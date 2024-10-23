@@ -15,7 +15,7 @@ extension RouterContextExtension on BuildContext {
   }) {
     GoRouter.of(this).goNamed(
       RouteNames.home,
-      queryParams: queryParams,
+      queryParameters: queryParams,
       extra: extra,
     );
   }
@@ -26,7 +26,7 @@ extension RouterContextExtension on BuildContext {
   }) {
     GoRouter.of(this).replaceNamed(
       RouteNames.home,
-      queryParams: queryParams,
+      queryParameters: queryParams,
       extra: extra,
     );
   }
@@ -38,6 +38,6 @@ extension RouterContextExtension on BuildContext {
       GoRouter.of(this).pushNamed(
         RouteNames.detail,
         extra: args,
-        params: {'id': id ?? '0'},
+        pathParameters: {'id': id ?? '0'},
       );
 }

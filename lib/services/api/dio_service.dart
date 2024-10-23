@@ -20,9 +20,9 @@ class DioService {
   DioService(this.ref) {
     dio = Dio();
     dio.options.baseUrl = AppEndpoints.movieDbBase;
-    dio.options.sendTimeout = 30000;
-    dio.options.connectTimeout = 30000;
-    dio.options.receiveTimeout = 30000;
+    dio.options.sendTimeout = const Duration(seconds: 30);
+    dio.options.connectTimeout = const Duration(seconds: 30);
+    dio.options.receiveTimeout = const Duration(seconds: 30);
 
     dio.interceptors.add(LogInterceptor(
       requestBody: true,
@@ -34,7 +34,7 @@ class DioService {
   /// VARIABLES
   ///
 
-  final ProviderRef ref;
+  final Ref ref;
   late final Dio dio;
 
   ///
@@ -138,11 +138,11 @@ class DioService {
       }
 
       return builder(response.data);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       try {
         final errorData = e.response?.data as Map<String, dynamic>;
 
-        if (e.message.contains('Network is unreachable')) {
+        if (e.message != null && e.message!.contains('Network is unreachable')) {
           throw ApiError(message: 'No internet connection');
         }
 

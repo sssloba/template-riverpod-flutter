@@ -44,7 +44,7 @@ class AppRouter {
 
                   return DetailPage(
                     args: DetailPageArgs(
-                      id: state.params['id'],
+                      id: state.pathParameters['id'],
                       movie: movie,
                     ),
                   );

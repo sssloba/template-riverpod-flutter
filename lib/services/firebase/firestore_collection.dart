@@ -25,7 +25,7 @@ class FirestoreCollection<T> {
 
     docs = orderBy != null ? (await this.orderBy(orderBy, desc).get()).docs : (await withConverter.get()).docs;
 
-    return {for (QueryDocumentSnapshot<T> doc in docs) doc.id: doc.data()};
+    return {for (final QueryDocumentSnapshot<T> doc in docs) doc.id: doc.data()};
   }
 
   /// Get a stream of a single document by ID
